@@ -3,6 +3,6 @@ Team collaboration for Kaggle competitions !
 
 
 ### Competitions List
-- Housing price prediction 
-- Credit card fraud detection 
+- House Prices: Advanced Regression Techniques 
+- Credit Card Fraud Detection 
 
