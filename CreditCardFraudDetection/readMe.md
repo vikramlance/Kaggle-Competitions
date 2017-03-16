@@ -14,6 +14,6 @@ We are following data science workflow as below
 6. Preprocessing
 7. Feature Engineering
 8. Model(s) Tuning
-9. Ensemble (edited)
+9. Ensemble
 
 The link to the finer details is : https://shuaiw.github.io/2016/07/19/data-science-project-workflow.html  
