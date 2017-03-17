@@ -68,34 +68,3 @@ precision_score(y_true, y_pred, average='weighted')
 precision_score(y_true, y_pred, average=None)  
 
 """
-
-#Good reference for what we want to do here:
-#http://stats.stackexchange.com/questions/21592/optimising-for-precision-recall-curves-under-class-imbalance
-
-#libraries I plan on using/ #may be using
-import matplotlib.pyplot as plt
-#import seaborn as sbs
-import numpy as np
-#import pandas as pd
-
-#metrics that I will be using
-from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import average_precision_score
-
-#Base code methedology I feel will be easily applied to our result. Ref:Google Scikit Learn
-precision = dict()
-recall = dict()
-average_precision = dict()
-for i in range(n_classes):
-    precision[i], recall[i], _ = precision_recall_curve(y_test[:, i],
-                                                        y_score[:, i])
-
-    average_precision[i] = average_precision_score(y_test[:, i], y_score[:, i])
-
-
-# average ROC and ROC area (unsure about usage of micro argument)
-precision["micro"], recall["micro"], _ = precision_recall_curve(y_test.ravel(),
-    y_score.ravel())
-
-average_precision["micro"] = average_precision_score(y_test, y_score,
-                                                     average="micro")
