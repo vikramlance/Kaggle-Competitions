@@ -1,0 +1,192 @@
+Credit Card Fraud EDA in R step by step
+1. summary of variables
+----------------------------------------------------------------------
+train<-read.csv(file.choose(),header=TRUE)
+
+summary(train)
+      Time              V1                  V2                  V3          
+ Min.   :     0   Min.   :-56.40751   Min.   :-72.71573   Min.   :-48.3256  
+ 1st Qu.: 54202   1st Qu.: -0.92037   1st Qu.: -0.59855   1st Qu.: -0.8904  
+ Median : 84692   Median :  0.01811   Median :  0.06549   Median :  0.1799  
+ Mean   : 94814   Mean   :  0.00000   Mean   :  0.00000   Mean   :  0.0000  
+ 3rd Qu.:139321   3rd Qu.:  1.31564   3rd Qu.:  0.80372   3rd Qu.:  1.0272  
+ Max.   :172792   Max.   :  2.45493   Max.   : 22.05773   Max.   :  9.3826  
+       V4                 V5                   V6                 V7          
+ Min.   :-5.68317   Min.   :-113.74331   Min.   :-26.1605   Min.   :-43.5572  
+ 1st Qu.:-0.84864   1st Qu.:  -0.69160   1st Qu.: -0.7683   1st Qu.: -0.5541  
+ Median :-0.01985   Median :  -0.05434   Median : -0.2742   Median :  0.0401  
+ Mean   : 0.00000   Mean   :   0.00000   Mean   :  0.0000   Mean   :  0.0000  
+ 3rd Qu.: 0.74334   3rd Qu.:   0.61193   3rd Qu.:  0.3986   3rd Qu.:  0.5704  
+ Max.   :16.87534   Max.   :  34.80167   Max.   : 73.3016   Max.   :120.5895  
+       V8                  V9                 V10                 V11          
+ Min.   :-73.21672   Min.   :-13.43407   Min.   :-24.58826   Min.   :-4.79747  
+ 1st Qu.: -0.20863   1st Qu.: -0.64310   1st Qu.: -0.53543   1st Qu.:-0.76249  
+ Median :  0.02236   Median : -0.05143   Median : -0.09292   Median :-0.03276  
+ Mean   :  0.00000   Mean   :  0.00000   Mean   :  0.00000   Mean   : 0.00000  
+ 3rd Qu.:  0.32735   3rd Qu.:  0.59714   3rd Qu.:  0.45392   3rd Qu.: 0.73959  
+ Max.   : 20.00721   Max.   : 15.59500   Max.   : 23.74514   Max.   :12.01891  
+      V12                V13                V14                V15          
+ Min.   :-18.6837   Min.   :-5.79188   Min.   :-19.2143   Min.   :-4.49894  
+ 1st Qu.: -0.4056   1st Qu.:-0.64854   1st Qu.: -0.4256   1st Qu.:-0.58288  
+ Median :  0.1400   Median :-0.01357   Median :  0.0506   Median : 0.04807  
+ Mean   :  0.0000   Mean   : 0.00000   Mean   :  0.0000   Mean   : 0.00000  
+ 3rd Qu.:  0.6182   3rd Qu.: 0.66251   3rd Qu.:  0.4931   3rd Qu.: 0.64882  
+ Max.   :  7.8484   Max.   : 7.12688   Max.   : 10.5268   Max.   : 8.87774  
+      V16                 V17                 V18           
+ Min.   :-14.12985   Min.   :-25.16280   Min.   :-9.498746  
+ 1st Qu.: -0.46804   1st Qu.: -0.48375   1st Qu.:-0.498850  
+ Median :  0.06641   Median : -0.06568   Median :-0.003636  
+ Mean   :  0.00000   Mean   :  0.00000   Mean   : 0.000000  
+ 3rd Qu.:  0.52330   3rd Qu.:  0.39968   3rd Qu.: 0.500807  
+ Max.   : 17.31511   Max.   :  9.25353   Max.   : 5.041069  
+      V19                 V20                 V21           
+ Min.   :-7.213527   Min.   :-54.49772   Min.   :-34.83038  
+ 1st Qu.:-0.456299   1st Qu.: -0.21172   1st Qu.: -0.22839  
+ Median : 0.003735   Median : -0.06248   Median : -0.02945  
+ Mean   : 0.000000   Mean   :  0.00000   Mean   :  0.00000  
+ 3rd Qu.: 0.458949   3rd Qu.:  0.13304   3rd Qu.:  0.18638  
+ Max.   : 5.591971   Max.   : 39.42090   Max.   : 27.20284  
+      V22                  V23                 V24          
+ Min.   :-10.933144   Min.   :-44.80774   Min.   :-2.83663  
+ 1st Qu.: -0.542350   1st Qu.: -0.16185   1st Qu.:-0.35459  
+ Median :  0.006782   Median : -0.01119   Median : 0.04098  
+ Mean   :  0.000000   Mean   :  0.00000   Mean   : 0.00000  
+ 3rd Qu.:  0.528554   3rd Qu.:  0.14764   3rd Qu.: 0.43953  
+ Max.   : 10.503090   Max.   : 22.52841   Max.   : 4.58455  
+      V25                 V26                V27            
+ Min.   :-10.29540   Min.   :-2.60455   Min.   :-22.565679  
+ 1st Qu.: -0.31715   1st Qu.:-0.32698   1st Qu.: -0.070840  
+ Median :  0.01659   Median :-0.05214   Median :  0.001342  
+ Mean   :  0.00000   Mean   : 0.00000   Mean   :  0.000000  
+ 3rd Qu.:  0.35072   3rd Qu.: 0.24095   3rd Qu.:  0.091045  
+ Max.   :  7.51959   Max.   : 3.51735   Max.   : 31.612198  
+      V28                Amount             Class         
+ Min.   :-15.43008   Min.   :    0.00   Min.   :0.000000  
+ 1st Qu.: -0.05296   1st Qu.:    5.60   1st Qu.:0.000000  
+ Median :  0.01124   Median :   22.00   Median :0.000000  
+ Mean   :  0.00000   Mean   :   88.35   Mean   :0.001728  
+ 3rd Qu.:  0.07828   3rd Qu.:   77.17   3rd Qu.:0.000000  
+ Max.   : 33.84781   Max.   :25691.16   Max.   :1.000000  
+
+2. Structure of data
+--------------------------------------------------
+> str(train)
+'data.frame':   284807 obs. of  31 variables:
+ $ Time  : num  0 0 1 1 2 2 4 7 7 9 ...
+ $ V1    : num  -1.36 1.192 -1.358 -0.966 -1.158 ...
+ $ V2    : num  -0.0728 0.2662 -1.3402 -0.1852 0.8777 ...
+ $ V3    : num  2.536 0.166 1.773 1.793 1.549 ...
+ $ V4    : num  1.378 0.448 0.38 -0.863 0.403 ...
+ $ V5    : num  -0.3383 0.06 -0.5032 -0.0103 -0.4072 ...
+ $ V6    : num  0.4624 -0.0824 1.8005 1.2472 0.0959 ...
+ $ V7    : num  0.2396 -0.0788 0.7915 0.2376 0.5929 ...
+ $ V8    : num  0.0987 0.0851 0.2477 0.3774 -0.2705 ...
+ $ V9    : num  0.364 -0.255 -1.515 -1.387 0.818 ...
+ $ V10   : num  0.0908 -0.167 0.2076 -0.055 0.7531 ...
+ $ V11   : num  -0.552 1.613 0.625 -0.226 -0.823 ...
+ $ V12   : num  -0.6178 1.0652 0.0661 0.1782 0.5382 ...
+ $ V13   : num  -0.991 0.489 0.717 0.508 1.346 ...
+ $ V14   : num  -0.311 -0.144 -0.166 -0.288 -1.12 ...
+ $ V15   : num  1.468 0.636 2.346 -0.631 0.175 ...
+ $ V16   : num  -0.47 0.464 -2.89 -1.06 -0.451 ...
+ $ V17   : num  0.208 -0.115 1.11 -0.684 -0.237 ...
+ $ V18   : num  0.0258 -0.1834 -0.1214 1.9658 -0.0382 ...
+ $ V19   : num  0.404 -0.146 -2.262 -1.233 0.803 ...
+ $ V20   : num  0.2514 -0.0691 0.525 -0.208 0.4085 ...
+ $ V21   : num  -0.01831 -0.22578 0.248 -0.1083 -0.00943 ...
+ $ V22   : num  0.27784 -0.63867 0.77168 0.00527 0.79828 ...
+ $ V23   : num  -0.11 0.101 0.909 -0.19 -0.137 ...
+ $ V24   : num  0.0669 -0.3398 -0.6893 -1.1756 0.1413 ...
+ $ V25   : num  0.129 0.167 -0.328 0.647 -0.206 ...
+ $ V26   : num  -0.189 0.126 -0.139 -0.222 0.502 ...
+ $ V27   : num  0.13356 -0.00898 -0.05535 0.06272 0.21942 ...
+ $ V28   : num  -0.0211 0.0147 -0.0598 0.0615 0.2152 ...
+ $ Amount: num  149.62 2.69 378.66 123.5 69.99 ...
+ $ Class : int  0 0 0 0 0 0 0 0 0 0 .
+
+3. Logistic Regression Model
+--------------------------------------------------------------
+#Logistic Regression Model
+#-----------------------------
+> library(nnet)
+> mymodel<-multinom(train$Class~.,data=train)
+# weights:  32 (31 variable)
+initial  value 197413.169055 
+final  value 90345.931201 
+converged
+
+#Misclassification Rate
+#-----------------------------
+> p<-predict(mymodel,train)
+> tab<-table(p,train$Class)
+
+#Confusion Matrix
+#-----------------------------
+> tab
+p        0      1
+  0 284315    492
+  1      0      0
+  
+# Accuracy 
+#-----------------------------
+> sum(diag(tab))/sum(tab)
+[1] 0.9982725
+> 1-sum(diag(tab))/sum(tab)
+[1] 0.001727486 
+
+# BeanchMark number
+#-----------------------------
+> 284315/284807
+[1] 0.9982725
+
+#Conclusion : BeanchMark and Logistic Regression are same !!! 
+
+#Needed Packages
+#--------------------------------------
+install.packages("randomForest")
+install.packages("e1071")
+install.packages("rpart")
+install.packages("rpart.plot")
+install.packages("caTools")
+install.packages("readr")
+install.packages("caret")
+
+library(randomForest)
+library(e1071)
+library(rpart)
+library(rpart.plot)
+library(caTools)
+library(readr)
+library(caret)
+
+#Spliting dataset into training data
+#-------------------------------------------
+train$Class <- factor(train$Class)
+set.seed(1)
+split <- sample.split(card$Class, SplitRatio = 0.7)
+train <- subset(card, split == T)
+cv <- subset(card, split == F)
+
+# check output Class distributiion
+#-------------------------------------------
+table(cv$Class)
+## 
+##     0     1 
+## 85295   148
+
+
+glm.model <- glm(Class ~ ., data = train1, family = "binomial")
+glm.predict <- predict(glm.model, cv, type = "response")
+table(cv$Class, glm.predict > 0.5)
+
+##    
+##     FALSE  TRUE
+##   0 85279    16
+##   1    69    79
+
+tree.model <- rpart(Class ~ ., data = train1, method = "class", minbucket = 20)
+prp(tree.model) 
+tree.predict <- predict(tree.model, cv, type = "class")
+confusionMatrix(cv$Class, tree.predict)
+
+# check the tree in file EDA_Credit_tree file.
