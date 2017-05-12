@@ -10,4 +10,4 @@ Predict users who will visit the new listing.
 NLP 
 
 - http://www.vikparuchuri.com/blog/natural-language-processing-tutorial/
-
+- https://www.youtube.com/playlist?list=PL6397E4B26D00A269&app=desktop
