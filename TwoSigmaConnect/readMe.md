@@ -11,4 +11,4 @@ NLP
 
 - http://www.vikparuchuri.com/blog/natural-language-processing-tutorial/
 - https://www.youtube.com/playlist?list=PL6397E4B26D00A269&app=desktop
-- 
+- http://victoria.lviv.ua/html/fl5/NaturalLanguageProcessingWithPython.pdf
