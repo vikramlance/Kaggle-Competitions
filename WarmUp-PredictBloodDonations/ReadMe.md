@@ -6,3 +6,9 @@ This is simplest data on driven data website.
 
 Competition Link: https://www.drivendata.org/competitions/2/warm-up-predict-blood-donations/
 
+Step By step - Data science project workflow 
+
+https://shuaiw.github.io/2016/07/19/data-science-project-workflow.html
+
+
+
